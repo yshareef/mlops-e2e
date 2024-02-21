@@ -27,8 +27,8 @@ import pandas as pd
 
 from sklearn.compose import ColumnTransformer, make_column_selector
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, FunctionTransformer  # ,OneHotEncoder
-import category_encoders as ce
+from sklearn.preprocessing import StandardScaler, FunctionTransformer  ,OneHotEncoder
+# import category_encoders as ce
 
 import joblib
 import tarfile
@@ -86,7 +86,7 @@ class DataProcessor:
         categorical_features = ["location_id", "location_parking_type_id"]
 
         categorical_transformer = Pipeline(
-            steps=[("binary-encoding", ce.BinaryEncoder())])
+            steps=[("onehot", OneHotEncoder(handle_unknown="ignore"))]) # todo: ("binary-encoding", ce.BinaryEncoder())
 
         # Pipeline with FunctionTransformer for cyclic encoding
         cyclic_encoder_day = FunctionTransformer(cyclic_encode_weekday)
