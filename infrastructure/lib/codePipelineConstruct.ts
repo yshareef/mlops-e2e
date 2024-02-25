@@ -310,9 +310,9 @@ export class CodePipelineConstruct extends Construct {
             extraInputs: [pipelineOutput],
         });
 
-        this.pipeline.addStage({
-            stageName: 'Deploy',
-            actions: [manualApprovalAction, deploy],
-        });
+        // this.pipeline.addStage({
+        //     stageName: 'Deploy',
+        //     actions: [manualApprovalAction, deploy],
+        // });
     }
 }
