@@ -24,10 +24,13 @@ import json
 import boto3
 import numpy as np
 import pandas as pd
+import subprocess
+
+subprocess.run(["pip", "install", "category_encoders"])
 
 from sklearn.compose import ColumnTransformer, make_column_selector
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, FunctionTransformer  # ,OneHotEncoder
+from sklearn.preprocessing import StandardScaler, FunctionTransformer   #,OneHotEncoder
 import category_encoders as ce
 
 import joblib
