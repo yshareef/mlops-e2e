@@ -89,7 +89,7 @@ class DataProcessor:
         categorical_features = ["location_id", "location_parking_type_id"]
 
         categorical_transformer = Pipeline(
-            # steps=[("onehot", OneHotEncoder(handle_unknown="ignore"))]) # todo: ("binary-encoding", ce.BinaryEncoder())
+            # steps=[("onehot", OneHotEncoder(handle_unknown="ignore"))])
             steps=[("onehot", ce.BinaryEncoder())])
         # Pipeline with FunctionTransformer for cyclic encoding
         cyclic_encoder_day = FunctionTransformer(cyclic_encode_weekday)
