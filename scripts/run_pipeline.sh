@@ -15,8 +15,9 @@ virtualenv -p python3 $VIRTUAL_ENV
 
 #Install requirements
 pip install -r requirements.txt
-pip install --upgrade category_encoders
 pip install sagemaker==2.205.0
+pip install category_encoders
+pip list | grep category
 
 echo "Starting Pipeline Execution"
 export PYTHONUNBUFFERED=TRUE
