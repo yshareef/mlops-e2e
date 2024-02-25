@@ -32,5 +32,5 @@ deactivate
 
 popd
 
-export MODEL_PACKAGE_NAME=`cat ml_pipeline/pipelineExecutionArn` 
-echo "{\"arn\": \"${MODEL_PACKAGE_NAME}\"}" > pipelineExecution.json
+#export MODEL_PACKAGE_NAME=`cat ml_pipeline/pipelineExecutionArn`
+#echo "{\"arn\": \"${MODEL_PACKAGE_NAME}\"}" > pipelineExecution.json

@@ -22,10 +22,10 @@ import sys
 
 from _utils import get_pipeline_driver, convert_struct
 
-def get_model_package_name(pipeline_steps):
-    for step in pipeline_steps:
-        if step["StepName"] == "RegisterModel-RegisterModel":
-            return step["Metadata"]["RegisterModel"]["Arn"]
+# def get_model_package_name(pipeline_steps):
+#     for step in pipeline_steps:
+#         if step["StepName"] == "RegisterModel-RegisterModel":
+#             return step["Metadata"]["RegisterModel"]["Arn"]
 
 def main():  # pragma: no cover
     """The main harness that creates or updates and runs the pipeline.
@@ -101,10 +101,10 @@ def main():  # pragma: no cover
         pipeline_steps = execution.list_steps()
         print(pipeline_steps)
 
-        model_package_name = get_model_package_name(pipeline_steps)
-        out_file = open("pipelineExecutionArn", "w")
-        out_file.write(model_package_name)
-        out_file.close()
+        # model_package_name = get_model_package_name(pipeline_steps)
+        # out_file = open("pipelineExecutionArn", "w")
+        # out_file.write(model_package_name)
+        # out_file.close()
                 
     except Exception as e:  # pylint: disable=W0703
         print(f"Exception: {e}")
