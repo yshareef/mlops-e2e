@@ -27,8 +27,8 @@ import pandas as pd
 
 from sklearn.compose import ColumnTransformer, make_column_selector
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, FunctionTransformer  ,OneHotEncoder
-# import category_encoders as ce
+from sklearn.preprocessing import StandardScaler, FunctionTransformer  # ,OneHotEncoder
+import category_encoders as ce
 
 import joblib
 import tarfile
@@ -86,8 +86,8 @@ class DataProcessor:
         categorical_features = ["location_id", "location_parking_type_id"]
 
         categorical_transformer = Pipeline(
-            steps=[("onehot", OneHotEncoder(handle_unknown="ignore"))]) # todo: ("binary-encoding", ce.BinaryEncoder())
-
+            # steps=[("onehot", OneHotEncoder(handle_unknown="ignore"))]) # todo: ("binary-encoding", ce.BinaryEncoder())
+            steps=[("onehot", ce.BinaryEncoder())])
         # Pipeline with FunctionTransformer for cyclic encoding
         cyclic_encoder_day = FunctionTransformer(cyclic_encode_weekday)
         cyclic_encoder_month = FunctionTransformer(cyclic_encode_month)
@@ -129,7 +129,7 @@ class DataProcessor:
         data_to_predict_pre = self._preprocess.transform(self.data_to_predict)
         data_to_predict_pre = convert_if_csr_matrix(data_to_predict_pre)
 
-        return (np.concatenate((x_location_features,x_location_type_feature, x_pre, y_pre), axis=1),
+        return (np.concatenate((x_location_features, x_location_type_feature, x_pre, y_pre), axis=1),
                 np.concatenate((data_to_predict_Date_feature, data_to_predict_location_feature,
                                 data_to_predict_location_type_feature, data_to_predict_pre), axis=1))
 
