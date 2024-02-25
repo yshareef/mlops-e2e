@@ -194,19 +194,19 @@ export class CodePipelineConstruct extends Construct {
         });
 
         //Deploy
-        const deploymentApprovalTopic = new sns.Topic(this, 'ModelDeploymentApprovalTopic', {
-            topicName: 'ModelDeploymentApprovalTopic',
-        });
+        // const deploymentApprovalTopic = new sns.Topic(this, 'ModelDeploymentApprovalTopic', {
+        //     topicName: 'ModelDeploymentApprovalTopic',
+        // });
 
-        const manualApprovalAction = new codepipeline_actions.ManualApprovalAction({
-            actionName: 'Approval',
-            runOrder: 1,
-            notificationTopic: deploymentApprovalTopic,
-            additionalInformation: `A new version of the model for project ${props.projectName} is waiting for approval`,
-            externalEntityLink: `https://${Stack.of(this).region}.console.aws.amazon.com/sagemaker/home?region=${
-                Stack.of(this).region
-            }#/studio/`,
-        });
+        // const manualApprovalAction = new codepipeline_actions.ManualApprovalAction({
+        //     actionName: 'Approval',
+        //     runOrder: 1,
+        //     notificationTopic: deploymentApprovalTopic,
+        //     additionalInformation: `A new version of the model for project ${props.projectName} is waiting for approval`,
+        //     externalEntityLink: `https://${Stack.of(this).region}.console.aws.amazon.com/sagemaker/home?region=${
+        //         Stack.of(this).region
+        //     }#/studio/`,
+        // });
 
         const deployRole = new iam.Role(this, 'DeployRole', {
             assumedBy: new iam.ServicePrincipal('codebuild.amazonaws.com'),
@@ -293,22 +293,22 @@ export class CodePipelineConstruct extends Construct {
             })
         );
 
-        const deployProject = new codebuild.PipelineProject(this, 'DeployProject', {
-            buildSpec: codebuild.BuildSpec.fromSourceFilename('./buildspecs/deploy.yml'),
-            role: deployRole,
-            environment: {
-                buildImage: codebuild.LinuxBuildImage.STANDARD_6_0,
-                privileged: true,
-            },
-        });
+        // const deployProject = new codebuild.PipelineProject(this, 'DeployProject', {
+        //     buildSpec: codebuild.BuildSpec.fromSourceFilename('./buildspecs/deploy.yml'),
+        //     role: deployRole,
+        //     environment: {
+        //         buildImage: codebuild.LinuxBuildImage.STANDARD_6_0,
+        //         privileged: true,
+        //     },
+        // });
 
-        const deploy = new codepipeline_actions.CodeBuildAction({
-            actionName: 'Deploy',
-            runOrder: 2,
-            project: deployProject,
-            input: buildOutput,
-            extraInputs: [pipelineOutput],
-        });
+        // const deploy = new codepipeline_actions.CodeBuildAction({
+        //     actionName: 'Deploy',
+        //     runOrder: 2,
+        //     project: deployProject,
+        //     input: buildOutput,
+        //     extraInputs: [pipelineOutput],
+        // });
 
         // this.pipeline.addStage({
         //     stageName: 'Deploy',
