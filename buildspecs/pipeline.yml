@@ -13,6 +13,6 @@ phases:
     commands:
       - bash scripts/run_pipeline.sh
 
-artifacts:
-  files:
-    - 'pipelineExecution.json'
+#artifacts:
+#  files:
+#    - 'pipelineExecution.json'
